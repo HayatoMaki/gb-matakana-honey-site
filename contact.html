@@ -24,6 +24,13 @@
   .price-row.sub{display:none;}
   .price-row.sub.visible{display:flex;}
   .price-row.sub .value{color:var(--gold-dark);}
+  .price-row.list-price .value{text-decoration:line-through;color:#9a8f70;font-weight:normal;font-size:0.85rem;}
+  .price-row.member-price{padding:8px 0;}
+  .price-row.member-price .label{font-size:1rem;color:#4a4430;}
+  .price-row.member-price .value{font-size:1.3rem;color:var(--gold-dark);}
+  .price-note{font-size:0.72rem;color:#8a7c55;line-height:1.8;margin:10px 0 20px;}
+  .pledge-row{margin-top:14px;padding-top:14px;border-top:1px dashed #cbb87f;font-size:0.85rem;color:#6b5b25;}
+  .pledge-row label{display:flex;align-items:center;gap:8px;cursor:pointer;}
   .buy-row{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;}
   .buy-btn{display:inline-block;background:var(--gold);color:var(--green-dark);font-weight:bold;padding:11px 22px;border-radius:999px;text-decoration:none;font-size:0.9rem;letter-spacing:0.03em;}
   .buy-btn:hover{background:#d1a34a;}
@@ -60,7 +67,16 @@
       <button type="button" onclick="applyReferralCode()">適用する</button>
     </div>
     <div id="referral-msg" class="referral-msg"></div>
+    <div class="pledge-row">
+      <label>
+        <input type="checkbox" id="pledge-checkbox" onchange="applyPledge()">
+        年2回以上のご購入をお約束いただける方はこちら
+      </label>
+    </div>
   </div>
+  <p class="price-note">
+    非会員価格は市場価格の目安としての定価です。当店では年1回以上ご購入いただいた方を会員とし、会員価格を実質の販売価格としております。紹介コードをお持ちの方、または初回ご購入時に年2回以上のご購入をお約束いただける方は、サブスク価格でご購入いただけます。
+  </p>
 
   <section>
     <h2>商品一覧</h2>
@@ -68,18 +84,18 @@
     <div class="product-card">
       <h3>MGO 250+</h3>
       <p class="subtitle">UMF10+ ／ Everyday Wellness</p>
-      <div class="price-row"><span class="label">500g・非会員価格</span><span class="value">¥7,500</span></div>
-      <div class="price-row"><span class="label">500g・会員価格</span><span class="value">¥6,800</span></div>
+      <div class="price-row list-price"><span class="label">500g・定価</span><span class="value">¥7,500</span></div>
+      <div class="price-row member-price"><span class="label">500g・会員価格</span><span class="value">¥6,800</span></div>
       <div class="price-row sub" data-sub="mgo250-500"><span class="label">500g・サブスク価格</span><span class="value">¥6,300</span></div>
       <div class="buy-row">
-        <a class="buy-btn" id="buy-mgo250-500" href="#" target="_blank" rel="noopener">500gを購入する（非会員価格）</a>
+        <a class="buy-btn" id="buy-mgo250-500" href="#" target="_blank" rel="noopener">500gを購入する（会員価格）</a>
         <a class="buy-btn sub-btn" id="buy-mgo250-500-sub" data-sub-btn="mgo250-500" href="#" target="_blank" rel="noopener">500gをサブスク価格で購入する</a>
       </div>
-      <div class="price-row" style="margin-top:14px;"><span class="label">1kg・非会員価格</span><span class="value">¥16,500</span></div>
-      <div class="price-row"><span class="label">1kg・会員価格</span><span class="value">¥14,500</span></div>
+      <div class="price-row list-price" style="margin-top:14px;"><span class="label">1kg・定価</span><span class="value">¥16,500</span></div>
+      <div class="price-row member-price"><span class="label">1kg・会員価格</span><span class="value">¥14,500</span></div>
       <div class="price-row sub" data-sub="mgo250-1000"><span class="label">1kg・サブスク価格</span><span class="value">¥12,000</span></div>
       <div class="buy-row">
-        <a class="buy-btn" id="buy-mgo250-1000" href="#" target="_blank" rel="noopener">1kgを購入する（非会員価格）</a>
+        <a class="buy-btn" id="buy-mgo250-1000" href="#" target="_blank" rel="noopener">1kgを購入する（会員価格）</a>
         <a class="buy-btn sub-btn" id="buy-mgo250-1000-sub" data-sub-btn="mgo250-1000" href="#" target="_blank" rel="noopener">1kgをサブスク価格で購入する</a>
       </div>
     </div>
@@ -87,11 +103,11 @@
     <div class="product-card">
       <h3>MGO 650+</h3>
       <p class="subtitle">UMF17+ ／ Daily Immunity</p>
-      <div class="price-row"><span class="label">500g・非会員価格</span><span class="value">¥11,500</span></div>
-      <div class="price-row"><span class="label">500g・会員価格</span><span class="value">¥9,800</span></div>
+      <div class="price-row list-price"><span class="label">500g・定価</span><span class="value">¥11,500</span></div>
+      <div class="price-row member-price"><span class="label">500g・会員価格</span><span class="value">¥9,800</span></div>
       <div class="price-row sub" data-sub="mgo650-500"><span class="label">500g・サブスク価格</span><span class="value">¥9,200</span></div>
       <div class="buy-row">
-        <a class="buy-btn" id="buy-mgo650-500" href="#" target="_blank" rel="noopener">500gを購入する（非会員価格）</a>
+        <a class="buy-btn" id="buy-mgo650-500" href="#" target="_blank" rel="noopener">500gを購入する（会員価格）</a>
         <a class="buy-btn sub-btn" id="buy-mgo650-500-sub" data-sub-btn="mgo650-500" href="#" target="_blank" rel="noopener">500gをサブスク価格で購入する</a>
       </div>
     </div>
@@ -99,11 +115,11 @@
     <div class="product-card">
       <h3>MGO 850+</h3>
       <p class="subtitle">UMF20+ ／ Medical Grade</p>
-      <div class="price-row"><span class="label">250g・非会員価格</span><span class="value">¥10,000</span></div>
-      <div class="price-row"><span class="label">250g・会員価格</span><span class="value">¥9,200</span></div>
+      <div class="price-row list-price"><span class="label">250g・定価</span><span class="value">¥10,000</span></div>
+      <div class="price-row member-price"><span class="label">250g・会員価格</span><span class="value">¥9,200</span></div>
       <div class="price-row sub" data-sub="mgo850-250"><span class="label">250g・サブスク価格</span><span class="value">¥8,200</span></div>
       <div class="buy-row">
-        <a class="buy-btn" id="buy-mgo850-250" href="#" target="_blank" rel="noopener">250gを購入する（非会員価格）</a>
+        <a class="buy-btn" id="buy-mgo850-250" href="#" target="_blank" rel="noopener">250gを購入する（会員価格）</a>
         <a class="buy-btn sub-btn" id="buy-mgo850-250-sub" data-sub-btn="mgo850-250" href="#" target="_blank" rel="noopener">250gをサブスク価格で購入する</a>
       </div>
     </div>
@@ -130,22 +146,55 @@
   // ソースコードに直接記載されるため完全な秘匿性はない前提（Maki合意済み）。
   var VALID_REFERRAL_CODES = ["SAMPLE-CODE"];
 
+  function revealSubscriptionPricing() {
+    document.querySelectorAll('.price-row.sub').forEach(function(el) {
+      el.classList.add('visible');
+    });
+    document.querySelectorAll('.buy-btn.sub-btn').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }
+
+  function hideSubscriptionPricing() {
+    document.querySelectorAll('.price-row.sub').forEach(function(el) {
+      el.classList.remove('visible');
+    });
+    document.querySelectorAll('.buy-btn.sub-btn').forEach(function(el) {
+      el.classList.remove('visible');
+    });
+  }
+
   function applyReferralCode() {
     var input = document.getElementById('referral-input');
     var msg = document.getElementById('referral-msg');
     var code = input.value.trim();
-    if (VALID_REFERRAL_CODES.indexOf(code) !== -1) {
-      document.querySelectorAll('.price-row.sub').forEach(function(el) {
-        el.classList.add('visible');
-      });
-      document.querySelectorAll('.buy-btn.sub-btn').forEach(function(el) {
-        el.classList.add('visible');
-      });
+    if (code !== '' && VALID_REFERRAL_CODES.indexOf(code) !== -1) {
+      revealSubscriptionPricing();
       msg.textContent = 'サブスク価格を表示しました。';
       msg.className = 'referral-msg ok';
     } else {
+      // 誓約チェックボックスがオンならサブスク価格は表示したままにする
+      var pledge = document.getElementById('pledge-checkbox');
+      if (!pledge.checked) {
+        hideSubscriptionPricing();
+      }
       msg.textContent = '紹介コードが確認できませんでした。';
       msg.className = 'referral-msg ng';
+    }
+  }
+
+  // 自己申告ベース：検証機能は不要（Soo指示）
+  function applyPledge() {
+    var pledge = document.getElementById('pledge-checkbox');
+    if (pledge.checked) {
+      revealSubscriptionPricing();
+    } else {
+      // 紹介コードで既に解放されている場合は隠さない
+      var input = document.getElementById('referral-input');
+      var code = input.value.trim();
+      if (VALID_REFERRAL_CODES.indexOf(code) === -1) {
+        hideSubscriptionPricing();
+      }
     }
   }
 </script>
