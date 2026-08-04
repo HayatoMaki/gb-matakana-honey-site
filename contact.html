@@ -3,8 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>オンライン購入・お問い合わせ | Matakana Honey</title>
+<title>オンライン購入 | Matakana Honey</title>
 <link rel="stylesheet" href="css/style.css">
+<style>
+  .referral-box{background:#fff3d6;border:1px solid #e6cf95;border-radius:8px;padding:18px 20px;margin:24px 0;}
+  .referral-box label{display:block;font-size:0.85rem;color:#6b5b25;margin-bottom:8px;}
+  .referral-box .row{display:flex;gap:8px;flex-wrap:wrap;}
+  .referral-box input[type=text]{flex:1 1 200px;padding:10px 12px;border:1px solid #cbb87f;border-radius:6px;font-size:0.95rem;}
+  .referral-box button{background:var(--green-dark);color:var(--cream);border:none;border-radius:6px;padding:10px 20px;cursor:pointer;font-size:0.9rem;letter-spacing:0.03em;}
+  .referral-msg{margin-top:10px;font-size:0.85rem;}
+  .referral-msg.ok{color:#3a4d34;}
+  .referral-msg.ng{color:#a33;}
+  .product-card{border:1px solid #e7ddc3;border-radius:10px;padding:22px 24px;margin-bottom:24px;background:#fffdf7;}
+  .product-card h3{margin:0 0 4px;font-size:1.15rem;color:var(--gold-dark);}
+  .product-card .subtitle{font-size:0.8rem;color:#8a7c55;margin-bottom:14px;}
+  .price-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-top:1px solid #f0e8d0;font-size:0.95rem;}
+  .price-row:first-of-type{border-top:none;}
+  .price-row .label{color:#6b5b25;}
+  .price-row .value{font-weight:bold;}
+  .price-row.sub{display:none;}
+  .price-row.sub.visible{display:flex;}
+  .price-row.sub .value{color:var(--gold-dark);}
+  .buy-row{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;}
+  .buy-btn{display:inline-block;background:var(--gold);color:var(--green-dark);font-weight:bold;padding:11px 22px;border-radius:999px;text-decoration:none;font-size:0.9rem;letter-spacing:0.03em;}
+  .buy-btn:hover{background:#d1a34a;}
+  .buy-btn.sub-btn{display:none;background:var(--green-dark);color:var(--cream);}
+  .buy-btn.sub-btn.visible{display:inline-block;}
+  .small-note{font-size:0.72rem;color:#9a8f70;text-align:center;margin:18px auto;max-width:520px;line-height:1.7;}
+  .bulk-box{background:#f3ead2;border-radius:8px;padding:22px;margin-top:40px;text-align:center;}
+  .bulk-box p{margin-bottom:14px;font-size:0.92rem;color:#4a4430;}
+</style>
 </head>
 <body>
 <header>
@@ -18,31 +46,108 @@
 </header>
 
 <div class="hero">
-  <h1>オンライン購入・お問い合わせ</h1>
+  <h1>オンライン購入</h1>
   <p class="lead">ニュージーランド・マタカナから届く、Rogerのマヌカハニー。</p>
 </div>
 
 <main>
   <img class="placeholder-img" src="images/shop-display.jpg" alt="店頭の様子" style="width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:6px;margin:16px 0;">
 
+  <div class="referral-box">
+    <label for="referral-input">紹介コードをお持ちの方はこちら（サブスク価格が表示されます）</label>
+    <div class="row">
+      <input type="text" id="referral-input" placeholder="紹介コードを入力">
+      <button type="button" onclick="applyReferralCode()">適用する</button>
+    </div>
+    <div id="referral-msg" class="referral-msg"></div>
+  </div>
+
   <section>
-    <h2>ご注文について</h2>
-    <p>
-      商品のご注文・お問い合わせは、下記フォームより承っております。
-      内容量やお届け方法など、詳細はフォーム内でご案内しています。
-    </p>
+    <h2>商品一覧</h2>
+
+    <div class="product-card">
+      <h3>MGO 250+</h3>
+      <p class="subtitle">UMF10+ ／ Everyday Wellness</p>
+      <div class="price-row"><span class="label">500g・非会員価格</span><span class="value">¥7,500</span></div>
+      <div class="price-row"><span class="label">500g・会員価格</span><span class="value">¥6,800</span></div>
+      <div class="price-row sub" data-sub="mgo250-500"><span class="label">500g・サブスク価格</span><span class="value">¥6,300</span></div>
+      <div class="buy-row">
+        <a class="buy-btn" id="buy-mgo250-500" href="#" target="_blank" rel="noopener">500gを購入する（非会員価格）</a>
+        <a class="buy-btn sub-btn" id="buy-mgo250-500-sub" data-sub-btn="mgo250-500" href="#" target="_blank" rel="noopener">500gをサブスク価格で購入する</a>
+      </div>
+      <div class="price-row" style="margin-top:14px;"><span class="label">1kg・非会員価格</span><span class="value">¥16,500</span></div>
+      <div class="price-row"><span class="label">1kg・会員価格</span><span class="value">¥14,500</span></div>
+      <div class="price-row sub" data-sub="mgo250-1000"><span class="label">1kg・サブスク価格</span><span class="value">¥12,000</span></div>
+      <div class="buy-row">
+        <a class="buy-btn" id="buy-mgo250-1000" href="#" target="_blank" rel="noopener">1kgを購入する（非会員価格）</a>
+        <a class="buy-btn sub-btn" id="buy-mgo250-1000-sub" data-sub-btn="mgo250-1000" href="#" target="_blank" rel="noopener">1kgをサブスク価格で購入する</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <h3>MGO 650+</h3>
+      <p class="subtitle">UMF17+ ／ Daily Immunity</p>
+      <div class="price-row"><span class="label">500g・非会員価格</span><span class="value">¥11,500</span></div>
+      <div class="price-row"><span class="label">500g・会員価格</span><span class="value">¥9,800</span></div>
+      <div class="price-row sub" data-sub="mgo650-500"><span class="label">500g・サブスク価格</span><span class="value">¥9,200</span></div>
+      <div class="buy-row">
+        <a class="buy-btn" id="buy-mgo650-500" href="#" target="_blank" rel="noopener">500gを購入する（非会員価格）</a>
+        <a class="buy-btn sub-btn" id="buy-mgo650-500-sub" data-sub-btn="mgo650-500" href="#" target="_blank" rel="noopener">500gをサブスク価格で購入する</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <h3>MGO 850+</h3>
+      <p class="subtitle">UMF20+ ／ Medical Grade</p>
+      <div class="price-row"><span class="label">250g・非会員価格</span><span class="value">¥10,000</span></div>
+      <div class="price-row"><span class="label">250g・会員価格</span><span class="value">¥9,200</span></div>
+      <div class="price-row sub" data-sub="mgo850-250"><span class="label">250g・サブスク価格</span><span class="value">¥8,200</span></div>
+      <div class="buy-row">
+        <a class="buy-btn" id="buy-mgo850-250" href="#" target="_blank" rel="noopener">250gを購入する（非会員価格）</a>
+        <a class="buy-btn sub-btn" id="buy-mgo850-250-sub" data-sub-btn="mgo850-250" href="#" target="_blank" rel="noopener">250gをサブスク価格で購入する</a>
+      </div>
+    </div>
   </section>
 
-  <div class="cta-block">
-    <p>ご注文・お問い合わせフォーム</p>
-    <a class="btn" href="https://docs.google.com/forms/d/1Jwx15t9DJbV_6aFWOQp5lAX1VwiLrjwJ2BIpTIaHqno/viewform" target="_blank" rel="noopener">フォームを開く</a>
+  <p class="small-note">
+    決済手数料などを省き極力安い価格で高品質のマヌカハニーをお届けしたいので、決済方法が便利ではないのですがご理解ください。
+  </p>
+
+  <div class="bulk-box">
+    <p>複数の商品をまとめてご注文希望の方は、こちらのオーダーフォームより銀行振込またはご来店でのお受け取りを承っております。</p>
+    <a class="btn" href="https://docs.google.com/forms/d/1Jwx15t9DJbV_6aFWOQp5lAX1VwiLrjwJ2BIpTIaHqno/viewform" target="_blank" rel="noopener">オーダーフォームを開く</a>
   </div>
 
   <p class="disclaimer">
-    ※ フォームのリンク先は仮設定です。使用するフォームの最終確認をお願いします。
+    ※ 各商品の購入ボタンはSquare決済リンクの発行待ちのため、現在は仮リンクです。オーダーフォームのリンク先も仮設定のため、最終確認をお願いします。
   </p>
 </main>
 
 <footer>&copy; 2026 Matakana Honey Japan（AJITO.N）</footer>
+
+<script>
+  // TODO(Soo): 実際の紹介コード一覧に差し替えてください。
+  // ソースコードに直接記載されるため完全な秘匿性はない前提（Maki合意済み）。
+  var VALID_REFERRAL_CODES = ["SAMPLE-CODE"];
+
+  function applyReferralCode() {
+    var input = document.getElementById('referral-input');
+    var msg = document.getElementById('referral-msg');
+    var code = input.value.trim();
+    if (VALID_REFERRAL_CODES.indexOf(code) !== -1) {
+      document.querySelectorAll('.price-row.sub').forEach(function(el) {
+        el.classList.add('visible');
+      });
+      document.querySelectorAll('.buy-btn.sub-btn').forEach(function(el) {
+        el.classList.add('visible');
+      });
+      msg.textContent = 'サブスク価格を表示しました。';
+      msg.className = 'referral-msg ok';
+    } else {
+      msg.textContent = '紹介コードが確認できませんでした。';
+      msg.className = 'referral-msg ng';
+    }
+  }
+</script>
 </body>
 </html>
