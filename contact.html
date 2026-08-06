@@ -69,10 +69,17 @@
     </div>
     <div id="referral-msg" class="referral-msg"></div>
     <div class="pledge-row">
-      <label>
-        <input type="checkbox" id="pledge-checkbox" onchange="applyPledge()">
-        年2回以上のご購入をお約束いただける方はこちら
-      </label>
+      <p style="margin:0 0 10px;font-size:0.88rem;color:#4a4430;">
+        初回購入時から1年以内に2回以上の定期購入の方は定期購入価格が可能です。下記のフォームからお知らせください。
+      </p>
+      <a class="buy-btn" href="https://ig.me/m/cafeAJITO.N" target="_blank" rel="noopener" style="display:inline-block;">Instagramでお知らせする</a>
+      <div style="margin-top:12px;padding:10px 12px;background:#fff;border:1px dashed #cbb87f;border-radius:6px;font-size:0.82rem;color:#4a4430;line-height:1.7;">
+        マヌカハニー定期購入を希望します。<br>
+        商品：（　　）／初回お届け希望日：（　　）
+      </div>
+      <p style="font-size:0.72rem;color:#9a8f70;margin-top:8px;">
+        ※Instagramの仕様上、メッセージ本文の自動入力はできません。上記の文面をコピーしてお送りください。
+      </p>
     </div>
   </div>
   <p class="price-note">
@@ -177,28 +184,9 @@
       msg.textContent = 'サブスク価格を表示しました。';
       msg.className = 'referral-msg ok';
     } else {
-      // 誓約チェックボックスがオンならサブスク価格は表示したままにする
-      var pledge = document.getElementById('pledge-checkbox');
-      if (!pledge.checked) {
-        hideSubscriptionPricing();
-      }
+      hideSubscriptionPricing();
       msg.textContent = '紹介コードが確認できませんでした。';
       msg.className = 'referral-msg ng';
-    }
-  }
-
-  // 自己申告ベース：検証機能は不要（Soo指示）
-  function applyPledge() {
-    var pledge = document.getElementById('pledge-checkbox');
-    if (pledge.checked) {
-      revealSubscriptionPricing();
-    } else {
-      // 紹介コードで既に解放されている場合は隠さない
-      var input = document.getElementById('referral-input');
-      var code = input.value.trim();
-      if (VALID_REFERRAL_CODES.indexOf(code) === -1) {
-        hideSubscriptionPricing();
-      }
     }
   }
 </script>
